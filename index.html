@@ -1,0 +1,262 @@
+<html>
+<head>
+<title>Demo 2</title>
+<style type="text/css">
+
+body { 
+  background: url(images/europe.svg) no-repeat center center fixed ; 
+  -webkit-background-size: auto 768px;
+  -moz-background-size: auto 768px;
+  -o-background-size: auto 768px;
+  background-size: auto 768px;
+}
+/*
+body {
+ font:76% normal verdana,arial,tahoma;
+}
+
+h1, h2 {
+ font-size:1em;
+}
+*/
+/*#plane{
+     position:absolute;
+     left:340;
+     top:255;
+     width:100;
+}
+*/
+#ClickMe{
+    opacity: 1;
+    position:absolute;
+    top:-100;
+    left:-450;
+    width:900px;
+    /*margin:0 auto;*/
+    font-size: 10em;
+    text-align: center;
+}
+
+#HuZ{
+    opacity: 0;
+    position:absolute;
+    top:-200;
+    left:-450;
+    width:900px;
+    /*margin:0 auto;*/
+    font-size: 10em;
+    text-align: center;
+}
+#centerDiv{
+  position:fixed;
+  height:10px;
+  width:10px;
+  /*background: red; */
+  margin:auto;
+  top:0;left:0; bottom:0; right:0;
+}
+#pinHamburg {
+  content:url(images/pin.svg);
+  position:absolute;
+  top:-330px;
+  left:-270px;
+  width:5em;
+}
+#pinIstanbul{
+  content:url(images/pin.svg);
+  position:absolute;
+  top:255px;
+  left:340px;
+  width:5em;
+}
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+  opacity:0;
+  position:absolute;
+  top:255;
+  left: 330;
+  /*border: 1px solid #ccc;*/
+}
+
+#plane.spin .flipper {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    }
+
+.flip-container, .front, .back {
+    width: 100px;
+    height: 100px;
+}
+
+.flipper {
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+  
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.front {
+    /*background: url(http://davidwalsh.name/demo/dwflip.jpg) 0 0 no-repeat;*/
+    z-index: 2;
+}
+
+.back {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+
+    /*background: #f8f8f8;*/
+}
+
+.bubble {
+  position: relative;
+  top:-340;
+  left:-276;
+  background-color:#eee;
+  opacity:0;
+  margin: 0;
+  padding:10px;
+  text-align:center;
+  width:180px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 0 3px rgba(0,0,0,0.25); 
+}
+.bubble:after {
+  position: absolute;
+  display: block;
+  content: "";  
+  border-color: #eee transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom:-19px;
+  left:1em;
+}
+</style>
+<!-- <script type="text/javascript" src="jquery.js"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="jquery.path.js"></script> -->
+<!--CDN link for the latest TweenMax-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+
+<body>
+<div id="centerDiv">
+<div id="ClickMe">Click Me :)</div>
+    <div id="pinHamburg"> </div>
+    <div id="pinIstanbul"> </div>
+    <div id="plane" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <!-- front content -->
+            <img src="images/cartoon_plane_left.png" height="100">
+            </div>
+            <div class="back">
+                <!-- back content -->
+            <img src="images/cartoon_plane_right.png" height="100">
+            </div>
+        </div>
+    </div>
+    <div class="bubble">Tsch&uuml&uuml&uuml&uumlss Mona :*</div>
+<!--     <div id="plane">
+    <img src="images/cartoon_plane_red.png" height="100">
+    </div>
+ -->
+<div id="HuZ">Einmal Hin und Zur&uumlck</div>
+ </div>
+<script type="text/javascript">
+var $plane= $('#plane');
+var $bubble= $('.bubble');
+var $clickme= $('#ClickMe');
+var $huz= $('#HuZ');
+
+function moveBox(e) {
+    console.log('Click!')
+    TweenMax.to($clickme,0.3,{
+        css:{opacity:0}
+    })
+    TweenMax.to($plane,0.1,{
+        css:{opacity:1}
+    })
+  // var x = e.pageX,
+  //     y = e.pageY;
+    TweenMax.to($plane,10,{
+        css:{bezier:{
+            values:[
+            {top:-100,left:100},
+            {top:-320,left:-290}],
+            autoRotate:180}},
+            // ease:Power3.easeInOut
+    }); 
+    TweenMax.to($bubble,0.3,{
+        css:{opacity:1},
+        repeat:1,
+        repeatDelay:1,
+        yoyo:true,
+        delay:10.1
+    });
+    // document.querySelector("#plane").classList.toggle("flip")
+    TweenMax.set($plane, {css:{className:"+=spin"},
+        delay:11});
+    // TweenMax.set($plane, {class:'+=flip'});
+    TweenMax.to($plane,10,{
+        css:{bezier:{
+            values:[
+            {top:-100,left:100},
+            {top:245,left:320}],
+            autoRotate:true
+        }},
+            // ease:Power3.easeInOut,
+            delay:12
+    }); 
+
+    TweenMax.to($huz,0.7,{
+        css:{opacity:1},
+        delay:19
+    })
+
+    TweenMax.set($plane, {css:{className:"-=spin"},
+        delay:22});
+  // TweenMax.to($plane, 1.4, {
+  //   css: { left: -270, top: -330},
+  //   ease:Power3.easeInOut
+  // });
+}
+
+$(window).on('click', moveBox);
+</script>
+</body>
+</html>
